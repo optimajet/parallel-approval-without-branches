@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowLib", "WorkflowLib\WorkflowLib.csproj", "{93C13716-DDE2-48C0-A9E7-FB03D5481A6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowDesigner", "WorkflowDesigner\WorkflowDesigner.csproj", "{645189AA-C8D5-4237-8719-FDA5A1330073}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowConsole", "WorkflowConsole\WorkflowConsole.csproj", "{8F1837F3-CBBA-40A4-89BF-0DA62CC71478}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{93C13716-DDE2-48C0-A9E7-FB03D5481A6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93C13716-DDE2-48C0-A9E7-FB03D5481A6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93C13716-DDE2-48C0-A9E7-FB03D5481A6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93C13716-DDE2-48C0-A9E7-FB03D5481A6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{645189AA-C8D5-4237-8719-FDA5A1330073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{645189AA-C8D5-4237-8719-FDA5A1330073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{645189AA-C8D5-4237-8719-FDA5A1330073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{645189AA-C8D5-4237-8719-FDA5A1330073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F1837F3-CBBA-40A4-89BF-0DA62CC71478}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F1837F3-CBBA-40A4-89BF-0DA62CC71478}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F1837F3-CBBA-40A4-89BF-0DA62CC71478}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F1837F3-CBBA-40A4-89BF-0DA62CC71478}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
