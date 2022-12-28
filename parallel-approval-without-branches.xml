@@ -1,0 +1,163 @@
+<Process Name="parallel-approval-without-branches" CanBeInlined="false" Tags="" LogEnabled="false">
+  <Designer />
+  <Actors>
+    <Actor Name="Approver" Rule="Approver" Value="" />
+  </Actors>
+  <Commands>
+    <Command Name="approve" />
+    <Command Name="start" />
+    <Command Name="deny" />
+  </Commands>
+  <Activities>
+    <Activity Name="Draft" State="Draft" IsInitial="true" IsFinal="false" IsForSetState="true" IsAutoSchemeUpdate="true">
+      <Designer X="100" Y="150" Hidden="false" />
+    </Activity>
+    <Activity Name="Stage1Init" State="Stage1" IsInitial="false" IsFinal="false" IsForSetState="true" IsAutoSchemeUpdate="true">
+      <Implementation>
+        <ActionRef Order="1" NameRef="FillApprovers">
+          <ActionParameter><![CDATA[Stage1]]></ActionParameter>
+        </ActionRef>
+      </Implementation>
+      <Designer X="346" Y="150" Hidden="false" />
+    </Activity>
+    <Activity Name="Stage1" IsInitial="false" IsFinal="false" IsForSetState="false" IsAutoSchemeUpdate="true">
+      <Implementation>
+        <ActionRef Order="1" NameRef="Approve" />
+      </Implementation>
+      <Designer X="592" Y="150" Hidden="false" />
+    </Activity>
+    <Activity Name="Stage2Init" State="Stage2" IsInitial="false" IsFinal="false" IsForSetState="true" IsAutoSchemeUpdate="true">
+      <Implementation>
+        <ActionRef Order="1" NameRef="FillApprovers">
+          <ActionParameter><![CDATA[Stage2]]></ActionParameter>
+        </ActionRef>
+      </Implementation>
+      <Designer X="340" Y="270" Hidden="false" />
+    </Activity>
+    <Activity Name="Stage2" IsInitial="false" IsFinal="false" IsForSetState="false" IsAutoSchemeUpdate="true">
+      <Implementation>
+        <ActionRef Order="1" NameRef="Approve" />
+      </Implementation>
+      <Designer X="600" Y="370" Hidden="false" />
+    </Activity>
+    <Activity Name="Final" State="Final" IsInitial="false" IsFinal="true" IsForSetState="true" IsAutoSchemeUpdate="true">
+      <Designer X="850" Y="370" Hidden="false" />
+    </Activity>
+  </Activities>
+  <Transitions>
+    <Transition Name="InitialActivity_Activity_1" To="Stage1Init" From="Draft" Classifier="Direct" AllowConcatenationType="And" RestrictConcatenationType="And" ConditionsConcatenationType="And" DisableParentStateControl="false">
+      <Triggers>
+        <Trigger Type="Command" NameRef="start" />
+      </Triggers>
+      <Conditions>
+        <Condition Type="Always" />
+      </Conditions>
+      <Designer Hidden="false" />
+    </Transition>
+    <Transition Name="Activity_Activity_1_1" To="Stage1" From="Stage1Init" Classifier="Direct" AllowConcatenationType="And" RestrictConcatenationType="And" ConditionsConcatenationType="And" DisableParentStateControl="false">
+      <Triggers>
+        <Trigger Type="Auto" />
+      </Triggers>
+      <Conditions>
+        <Condition Type="Always" />
+      </Conditions>
+      <Designer Hidden="false" />
+    </Transition>
+    <Transition Name="Activity_1_Activity_2_1" To="Stage2Init" From="Stage1" Classifier="Direct" AllowConcatenationType="And" RestrictConcatenationType="And" ConditionsConcatenationType="And" DisableParentStateControl="false">
+      <Triggers>
+        <Trigger Type="Auto" />
+      </Triggers>
+      <Conditions>
+        <Condition Type="Action" NameRef="IsApproveComplete" ConditionInversion="false" />
+      </Conditions>
+      <Designer X="598" Y="281" Hidden="false" />
+    </Transition>
+    <Transition Name="Activity_2_Activity_3_1" To="Stage2" From="Stage2Init" Classifier="Direct" AllowConcatenationType="And" RestrictConcatenationType="And" ConditionsConcatenationType="And" DisableParentStateControl="false">
+      <Triggers>
+        <Trigger Type="Auto" />
+      </Triggers>
+      <Conditions>
+        <Condition Type="Always" />
+      </Conditions>
+      <Designer X="476" Y="388" Hidden="false" />
+    </Transition>
+    <Transition Name="Activity_3_Activity_4_1" To="Final" From="Stage2" Classifier="Direct" AllowConcatenationType="And" RestrictConcatenationType="And" ConditionsConcatenationType="And" DisableParentStateControl="false">
+      <Triggers>
+        <Trigger Type="Auto" />
+      </Triggers>
+      <Conditions>
+        <Condition Type="Action" NameRef="IsApproveComplete" ConditionInversion="false" />
+      </Conditions>
+      <Designer X="792" Y="400" Hidden="false" />
+    </Transition>
+    <Transition Name="Activity_1_InitialActivity_1" To="Draft" From="Stage1" Classifier="Reverse" AllowConcatenationType="And" RestrictConcatenationType="And" ConditionsConcatenationType="And" DisableParentStateControl="false">
+      <Triggers>
+        <Trigger Type="Command" NameRef="deny" />
+      </Triggers>
+      <Conditions>
+        <Condition Type="Always" />
+      </Conditions>
+      <Designer X="414" Y="89" Hidden="false" />
+    </Transition>
+    <Transition Name="Activity_1_Activity_1_1" To="Stage1" From="Stage1" Classifier="Direct" AllowConcatenationType="And" RestrictConcatenationType="And" ConditionsConcatenationType="And" DisableParentStateControl="false">
+      <Restrictions>
+        <Restriction Type="Allow" NameRef="Approver" />
+      </Restrictions>
+      <Triggers>
+        <Trigger Type="Command" NameRef="approve" />
+      </Triggers>
+      <Conditions>
+        <Condition Type="Always" />
+      </Conditions>
+      <Designer Hidden="false" />
+    </Transition>
+    <Transition Name="Activity_3_Activity_1" To="Stage1Init" From="Stage2" Classifier="Reverse" AllowConcatenationType="And" RestrictConcatenationType="And" ConditionsConcatenationType="And" DisableParentStateControl="false">
+      <Triggers>
+        <Trigger Type="Command" NameRef="deny" />
+      </Triggers>
+      <Conditions>
+        <Condition Type="Always" />
+      </Conditions>
+      <Designer X="278" Y="410" Hidden="false" />
+    </Transition>
+    <Transition Name="Activity_3_Activity_3_1" To="Stage2" From="Stage2" Classifier="Direct" AllowConcatenationType="And" RestrictConcatenationType="And" ConditionsConcatenationType="And" DisableParentStateControl="false">
+      <Restrictions>
+        <Restriction Type="Allow" NameRef="Approver" />
+      </Restrictions>
+      <Triggers>
+        <Trigger Type="Command" NameRef="approve" />
+      </Triggers>
+      <Conditions>
+        <Condition Type="Always" />
+      </Conditions>
+      <Designer Hidden="false" />
+    </Transition>
+  </Transitions>
+  <CodeActions>
+    <CodeAction Name="IsApproveComplete" Type="Condition" IsGlobal="False" IsAsync="False">
+      <ActionCode><![CDATA[var approvers = processInstance.GetParameter<Approvers>("Approvers");
+return approvers.IsApproved;]]></ActionCode>
+    </CodeAction>
+    <CodeAction Name="Approve" Type="Action" IsGlobal="False" IsAsync="False">
+      <ActionCode><![CDATA[if (string.IsNullOrEmpty(processInstance.CurrentCommand) ||
+    processInstance.CurrentCommand.Equals("start",StringComparison.InvariantCultureIgnoreCase))
+        return;
+
+var approvers = processInstance.GetParameter<Approvers>("Approvers");
+approvers.Approve(processInstance.IdentityId);
+processInstance.SetParameter<Approvers>("Approvers",
+    approvers,
+    ParameterPurpose.Persistence);]]></ActionCode>
+    </CodeAction>
+    <CodeAction Name="FillApprovers" Type="Action" IsGlobal="False" IsAsync="False">
+      <ActionCode><![CDATA[processInstance.SetParameter<Approvers>("Approvers",
+    ApproversProvider.GetApprovers(processInstance, parameter),
+    ParameterPurpose.Persistence);]]></ActionCode>
+    </CodeAction>
+    <CodeAction Name="Approver" Type="RuleGet" IsGlobal="False" IsAsync="False">
+      <ActionCode><![CDATA[var approvers = processInstance.GetParameter<Approvers>("Approvers");
+return approvers.GetAvailiableApprovers();]]></ActionCode>
+    </CodeAction>
+  </CodeActions>
+  <CodeActionsCommonUsings><![CDATA[System.Threading.Tasks;System.Linq;System;Microsoft.CodeAnalysis;Microsoft.CSharp;System.Threading;System.Collections.Generic;System.Runtime.CompilerServices;OptimaJet.Workflow;Microsoft.CSharp.RuntimeBinder;System.Dynamic;OptimaJet.Workflow.Core.Model;OptimaJet.Workflow.Core.Runtime;System.Collections;WorkflowLib;]]></CodeActionsCommonUsings>
+</Process>
